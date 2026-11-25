@@ -110,8 +110,13 @@ function ListScreen({ tab, saved, toggle, onOpen, onAdd, showToast }) {
             whileTap={{ scale: 0.94 }}
             onClick={() => {
               chrome.runtime.sendMessage({ type: 'test-alert' }).then(
-                (r) => showToast(r?.ok && r.count ? 'Alertas de teste enviados.' : 'Não consegui enviar o teste.'),
-                () => showToast('Não consegui enviar o teste.')
+                (r) =>
+                  showToast(
+                    r?.ok
+                      ? `Alertas de teste enviados (${r.count}). Permissão: ${r.level}.`
+                      : `Falhou: ${(r?.errors || []).join('; ') || 'sem resposta'} (permissão: ${r?.level ?? '?'})`
+                  ),
+                (e) => showToast(`Falhou ao falar com o fundo: ${e?.message || e}`)
               );
             }}
           >
