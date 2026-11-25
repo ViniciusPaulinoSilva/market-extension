@@ -92,6 +92,7 @@ export const ASSETS = [
   index('SPX', 'xyz:SP500', 'S&P 500', 'S&P 500', 'us', 'SPX', '#1D4ED8', 'Contrato do S&P 500'),
   index('NDX', 'xyz:XYZ100', 'Nasdaq-100', 'Nasdaq-100', 'us', 'NDX', '#0E7490', 'Contrato do Nasdaq-100'),
   index('N225', 'xyz:JP225', 'Nikkei 225', 'Nikkei 225', 'jp', 'N225', '#B91C1C', 'Contrato do Nikkei 225'),
+  { ...index('EWZ', 'xyz:EWZ', 'EWZ', 'Brasil (ETF EWZ)', 'br', 'EWZ', '#15803D', 'Contrato do ETF EWZ (Brasil)'), pre: 'US$ ', unit: '' },
   index('K200', 'xyz:KR200', 'KOSPI 200', 'KOSPI 200', 'kr', 'K200', '#6D28D9', 'Contrato do KOSPI 200')
 ];
 

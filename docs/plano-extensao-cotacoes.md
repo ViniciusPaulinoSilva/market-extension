@@ -382,3 +382,31 @@ Pendências para construir:
 - [ExchangeRate-API, dados e frequência](https://www.exchangerate-api.com/product/our-exchange-rate-data)
 - [Open Exchange Rates FAQ](https://openexchangerates.org/faq/)
 - [Binance, documentação oficial de market data](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/market-data-endpoints)
+
+## 17. Testes com o pregão americano e a B3 abertos (2026-11-25, ~12:10 em Brasília)
+
+Dia de queda forte (Nasdaq -4%, S&P -2,2%), bom para medir. Idade = agora menos o horário do último preço.
+
+| Fonte | Ativos | Atraso medido |
+|---|---|---|
+| **Yahoo `v8/finance/chart`** | `^GSPC`, `^IXIC`, `^DJI`, `^NDX`, `SPY`, `EWZ` | **~65 a 145 s** (não os 10 a 15 min esperados) |
+| Yahoo | `^BVSP`, `BOVA11.SA` | ~1.135 s (**~19 min**: 15 min da B3 + vela) |
+| Yahoo | futuros `ES=F`, `NQ=F` | ~830 s (~14 min) |
+| **FMP gratuito** (`^GSPC`, `^IXIC`, `^DJI`) | | **~65 a 135 s**, igual ao Yahoo (mesma origem provável) |
+| Twelve Data gratuito | `SPY` | 27 s e `is_market_open=true`; `SPX` exige plano pago, `IXIC`/`DJI`/`IBOV` inválidos |
+| TradingView scanner | `SP:SPX` 10 min, `NDX`/`IXIC`/`IBOV`/`BOVA11`/`SPY`/`QQQ` 15 min | confirmado `delayed_streaming_600/900`; só `OANDA:US30USD`, `TVC:UKX`, `TVC:NI225` e `FX_IDC:USDBRL` seguem `streaming` |
+| Hyperliquid `xyz:SP500` / `XYZ100` | contrato 24h | segundos; ~0,1% abaixo do índice oficial |
+| Binance Futures `SPYUSDT` / `QQQUSDT` | ETF 24h | 2 a 6 s |
+
+Comparação em 8 leituras (a cada 20 s): o índice oficial (Yahoo/FMP) e o contrato caíram juntos de ~7.052 para ~7.033 e ~7.046 para ~7.039. O contrato se adiantava ao oficial por ~1 a 2 min e ficava num degrau de ~0,1% abaixo, então serve para o alerta de variação, e o oficial confirma depois.
+
+### Conclusões
+- **Revisão importante:** o S&P, o Nasdaq e o Dow oficiais têm só ~2 min de atraso no Yahoo e no FMP durante o pregão. O "10 a 15 min" valia só para o TradingView. Para o índice oficial dos EUA, Yahoo (não oficial) ou FMP (uso pessoal) são as fontes; para a versão publicada continua valendo o contrato 24h rotulado.
+- **Ibovespa:** segue com ~15 a 19 min de atraso em todas as fontes grátis. O proxy ao vivo é `xyz:EWZ` / `EWZUSDT`.
+- Smoke da extensão: sem erros; o par `USDCNY` veio com 71.287 s de idade (~20 h, dado parado na AwesomeAPI) e deve ganhar o aviso de dado velho na interface.
+- `npm test`: 19 de 19 passando.
+
+## 18. Feito em 2026-11-25 (tarde)
+- Aviso de dado velho: moedas após 30 min, cripto após 5 min, índices após 15 min. Marca "Parado há X" na lista e faixa de alerta no detalhe. O USD/CNY da AwesomeAPI (parado há ~19 h) aparece com o aviso.
+- Entrou o EWZ (Hyperliquid `xyz:EWZ`, ETF do Brasil em dólar) como substituto ao vivo do Ibovespa.
+- Este relatório passou a viver só aqui; nada do projeto fica no repositório politidata.

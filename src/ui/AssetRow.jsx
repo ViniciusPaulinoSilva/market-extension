@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import Icon from './Icon.jsx';
-import { money, pctText } from '../format.js';
+import { money, pctText, staleInfo } from '../format.js';
 import { usePrevious } from './hooks.js';
 
 export function StarIcon({ on, size = 22 }) {
@@ -52,6 +52,7 @@ export function changeClass(f) {
 
 export default function AssetRow({ asset, quote, starred, onOpen, onToggle, index }) {
   const cls = changeClass(quote?.change24h);
+  const stale = staleInfo(asset, quote);
   return (
     <motion.div
       layout="position"
@@ -68,6 +69,7 @@ export default function AssetRow({ asset, quote, starred, onOpen, onToggle, inde
           <span>
             {asset.ticker}
             {asset.proxy && <i className="tag">Contrato 24h</i>}
+            {stale && <i className="tag stale">{stale.short}</i>}
           </span>
         </span>
         <span className="row-val">

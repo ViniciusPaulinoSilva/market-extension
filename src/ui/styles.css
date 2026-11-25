@@ -113,6 +113,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 .nav-btn { position: relative; }
 .nav-ind { position: absolute; top: -6px; left: 30%; right: 30%; height: 3px; border-radius: 0 0 3px 3px; background: var(--accent); }
 i.tag { font-style: normal; }
+.tag.stale { background: #3a2a12; color: #f5c451; }
+.stale-note { margin-top: 14px; padding: 12px; border-radius: 12px; background: #2a2110; border: 1px solid #5c4513; font-size: 13px; line-height: 1.5; color: #f1dfae; }
 .skel { color: #586377; font-size: 12px; font-weight: 500; }
 .v.up { color: var(--green); }
 .v.down { color: var(--red); }

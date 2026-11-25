@@ -46,3 +46,13 @@ test('catálogo: ids únicos e proxies marcados', () => {
   assert.ok(ASSETS.filter((a) => a.cat === 'indices').every((a) => a.proxy));
   assert.ok(ASSETS.filter((a) => a.cat !== 'indices').every((a) => !a.proxy));
 });
+
+import { staleInfo } from '../src/format.js';
+test('staleInfo: fresco, parado e sem dados', () => {
+  const fx = BY_ID.USDCNY, cr = BY_ID.BTC;
+  assert.equal(staleInfo(fx, { ts: 1000 }, 1000 + 600), null);
+  assert.equal(staleInfo(cr, { ts: 1000 }, 1000 + 200), null);
+  assert.match(staleInfo(cr, { ts: 1000 }, 1000 + 600).short, /10 min/);
+  assert.match(staleInfo(fx, { ts: 0 }, 71287).short, /19 h/);
+  assert.equal(staleInfo(fx, null), null);
+});

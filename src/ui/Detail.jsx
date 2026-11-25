@@ -5,7 +5,7 @@ import Chart from './Chart.jsx';
 import { StarIcon, Price } from './AssetRow.jsx';
 import { useHistory, useConfig } from './hooks.js';
 import { CATEGORIES, thresholdFor } from '../catalog.js';
-import { money, pctText, fmt } from '../format.js';
+import { money, pctText, fmt, staleInfo } from '../format.js';
 
 const RANGES = [
   ['24h', '24h', 'nas últimas 24 horas'],
@@ -20,6 +20,7 @@ const item = (i) => ({
 });
 
 export default function Detail({ asset, quote, starred, onBack, onToggle }) {
+  const stale = staleInfo(asset, quote);
   const [range, setRange] = useState('24h');
   const config = useConfig();
   const hist = useHistory(asset, range);
@@ -141,6 +142,12 @@ export default function Detail({ asset, quote, starred, onBack, onToggle }) {
             </div>
           ))}
         </motion.div>
+
+        {stale && (
+          <motion.div {...item(8)} className="stale-note" role="alert">
+            <strong>{stale.short}.</strong> {stale.text}
+          </motion.div>
+        )}
 
         {asset.proxy && (
           <motion.div {...item(9)} className="proxy">
