@@ -39,7 +39,7 @@ npm run dev   # abrir http://localhost:5173/sidepanel/index.html
 
 ## Pendências antes de publicar
 
-- Trocar os ícones de cripto por logos oficiais e confirmar o uso das marcas.
+- Logos de cripto: entraram os do pacote CC0 (HYPE segue simples); a questão de marcas está em docs/publicar-chrome-web-store.md.
 - Política de privacidade e textos da Chrome Web Store.
 - Testar as notificações e o painel dentro do Chrome com a extensão carregada (até agora só a interface foi testada, numa aba comum).
 - Cripto: 10 ativos (BTC, ETH, BNB, SOL, XRP, TRX, HYPE, ZEC, DOGE, LINK); ícones são discos coloridos com a letra, não os logos oficiais.
@@ -52,3 +52,7 @@ npm run dev   # abrir http://localhost:5173/sidepanel/index.html
 
 - `docs/plano-extensao-cotacoes.md`: pesquisa de fontes, termos de uso, decisões e catálogo (cópia do relatório feito em 2026-11-25).
 - Design aprovado (canvas): https://claude.ai/artifact/Kd5UscBXpNCSvN1UA3sDpq
+
+## Créditos
+- Ícones de cripto: cryptocurrency-icons (CC0), https://github.com/spothq/cryptocurrency-icons. HYPE é um ícone simples nosso.
+- Checklist de publicação: `docs/publicar-chrome-web-store.md`.
