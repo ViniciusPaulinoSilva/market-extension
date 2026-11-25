@@ -55,7 +55,7 @@ Não, a extensão não usa código remoto. Todo o código vai dentro do pacote.
 - Certificar as três declarações: não vendemos dados a terceiros; não usamos nem transferimos dados para fins alheios à finalidade única; não usamos nem transferimos dados para avaliar crédito ou empréstimo.
 
 ## Política de privacidade (campo de URL)
-O painel exige uma URL pública. O texto completo está em `docs/politica-de-privacidade.md` (gerado de `src/ui/legal.js`, o mesmo que a aba Config mostra). A página pronta está em `site/index.html` (passo a passo em `site/LEIA-ME.md`). Recomendado: GitHub Pages de um repositório só da extensão.
+O painel exige uma URL pública. O texto completo está em `docs/politica-de-privacidade.md` (gerado de `src/ui/legal.js`, o mesmo que a aba Config mostra). A página pronta está em `docs/index.html` (passo a passo em `docs/hospedagem-pages.md`). Recomendado: GitHub Pages de um repositório só da extensão.
 
 ## Imagens
 - Capturas 1280x800: `store/screenshots/` (home, moedas, cripto, detail, indices, config). A loja aceita até 5; sugestão: home, cripto, detail, indices, config.

@@ -1,4 +1,4 @@
-// Gera docs/politica-de-privacidade.md e site/index.html a partir de src/ui/legal.js
+// Gera docs/politica-de-privacidade.md e docs/index.html a partir de src/ui/legal.js
 // (a mesma fonte que a aba Config mostra).
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { APP_NAME, UPDATED, SOURCES, DISCLAIMERS, PRIVACY } from '../src/ui/legal.js';
@@ -23,7 +23,7 @@ const md = [
 writeFileSync(new URL('../docs/politica-de-privacidade.md', import.meta.url), md);
 console.log('docs/politica-de-privacidade.md gerado');
 
-// Página pública da política (para hospedar no GitHub Pages ou similar): pasta site/.
+// Página pública da política (para hospedar no GitHub Pages ou similar): pasta docs/.
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const sections = PRIVACY.map((s) => `<h2>${esc(s.h)}</h2>${NL}${s.p.map((t) => `<p>${esc(t)}</p>`).join(NL)}`).join(NL);
 const html = `<!doctype html>
@@ -61,6 +61,6 @@ ${DISCLAIMERS.map((t) => `<li>${esc(t)}</li>`).join(NL)}
 </body>
 </html>
 `;
-mkdirSync(new URL('../site/', import.meta.url), { recursive: true });
-writeFileSync(new URL('../site/index.html', import.meta.url), html);
-console.log('site/index.html gerado');
+mkdirSync(new URL('../docs/', import.meta.url), { recursive: true });
+writeFileSync(new URL('../docs/index.html', import.meta.url), html);
+console.log('docs/index.html gerado');

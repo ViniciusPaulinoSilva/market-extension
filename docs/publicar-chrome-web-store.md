@@ -45,7 +45,7 @@ Fontes: políticas e páginas do painel em developer.chrome.com/docs/webstore (l
 ## 8. Pendências técnicas
 - Testar dentro do Chrome: painel lateral, notificações, service worker.
 - Tela de configuração (limites, janela, ligar e desligar alertas).
-- Nome público, e-mail de contato e site/URL oficial do publicador.
+- Nome público do publicador (o e-mail de contato já está na política).
 - Versão 1.0.0 no manifest ao enviar.
 
 ## Atualização (2026-11-25, tarde)
@@ -61,4 +61,4 @@ Falta: hospedar a política numa URL pública, tile 440x280 opcional, versão 1.
   - Binance: `data-api.binance.vision` é o endereço indicado para dados públicos de mercado. Uma FAQ antiga (2022) proíbe, sem consentimento por escrito, apps que cobram ou lucram (inclusive com anúncios) com dados da Binance e serviços de redistribuição de dados. A extensão é gratuita, sem anúncios e sem redistribuir (cada usuário consulta direto), então está fora desse caso, mas isso não é garantia jurídica.
   - Hyperliquid: API pública documentada; as regras de marca acima valem para nome e logo, não para os dados.
 - **Contato:** `CONTACT` em `src/ui/legal.js` está vazio de propósito; preencher com o e-mail do publicador antes de publicar a política.
-- **Política:** página pronta em `site/index.html`; hospedar no GitHub Pages (ver `site/LEIA-ME.md`).
+- **Política:** página pronta em `docs/index.html`; hospedar no GitHub Pages (ver `docs/hospedagem-pages.md`).
