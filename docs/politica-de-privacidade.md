@@ -36,7 +36,7 @@ Você pode remover ativos a qualquer momento, desligar os alertas na aba Config 
 
 ## Contato
 
-Dúvidas sobre esta política podem ser enviadas pela página da extensão na Chrome Web Store.
+Dúvidas sobre esta política: viniciussilvapaulino0@gmail.com.
 
 ## Mudanças nesta política
 

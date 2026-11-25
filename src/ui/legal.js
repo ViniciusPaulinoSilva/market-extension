@@ -2,7 +2,7 @@
 export const APP_NAME = 'Cotações';
 export const UPDATED = '25 de novembro de 2026';
 // E-mail de contato do publicador (aparece na política só se estiver preenchido).
-export const CONTACT = '';
+export const CONTACT = 'viniciussilvapaulino0@gmail.com';
 
 export const SOURCES = [
   { name: 'AwesomeAPI', what: 'Moedas (dólar, euro, libra, iene e yuan)', host: 'economia.awesomeapi.com.br' },
