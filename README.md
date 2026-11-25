@@ -1,7 +1,7 @@
 # Cotações: extensão do Chrome
 
 Painel lateral (React, Vite e Motion) que acompanha até 5 moedas, cripto ou índices e avisa quando algum se move rápido.
-Pesquisa, fontes e decisões: `C:\Users\Ryzen\politidata\docs\plano-extensao-cotacoes.md`.
+Pesquisa, fontes e decisões: `docs/plano-extensao-cotacoes.md`.
 
 ## Como usar
 

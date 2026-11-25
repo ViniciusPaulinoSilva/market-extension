@@ -409,4 +409,3 @@ Comparação em 8 leituras (a cada 20 s): o índice oficial (Yahoo/FMP) e o cont
 ## 18. Feito em 2026-11-25 (tarde)
 - Aviso de dado velho: moedas após 30 min, cripto após 5 min, índices após 15 min. Marca "Parado há X" na lista e faixa de alerta no detalhe. O USD/CNY da AwesomeAPI (parado há ~19 h) aparece com o aviso.
 - Entrou o EWZ (Hyperliquid `xyz:EWZ`, ETF do Brasil em dólar) como substituto ao vivo do Ibovespa.
-- Este relatório passou a viver só aqui; nada do projeto fica no repositório politidata.

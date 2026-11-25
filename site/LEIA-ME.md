@@ -3,7 +3,7 @@
 `index.html` é a política completa (gerada por `npm run docs`). Para a Chrome Web Store ela precisa estar numa URL pública com HTTPS.
 
 ## Opção recomendada: GitHub Pages (grátis)
-1. Crie um repositório público novo só da extensão, por exemplo `cotacoes-extensao` (não use o do politidata).
+1. Crie um repositório público novo só da extensão, por exemplo `cotacoes-extensao`.
 2. Coloque `site/index.html` na raiz do repositório (ou na pasta `docs/`).
 3. No GitHub: Settings > Pages > Source: Deploy from a branch > main > / (root) ou /docs.
 4. O endereço fica `https://SEU-USUARIO.github.io/cotacoes-extensao/`. Cole no campo "Privacy policy" do painel da loja.

@@ -8,7 +8,7 @@ Fontes: políticas e páginas do painel em developer.chrome.com/docs/webstore (l
 - Verificação em duas etapas e declaração de "trader" (UE): não confirmei, ver no painel ao criar a conta.
 
 ## 2. Política de privacidade (obrigatória, mesmo sem coletar dados)
-- Precisa estar numa **URL pública** ligada no painel. Hospedar fora do politidata (por exemplo, GitHub Pages de um repositório só da extensão).
+- Precisa estar numa **URL pública** ligada no painel. Hospedar num repositório só da extensão (por exemplo, GitHub Pages).
 - Conteúdo: não temos servidor nem conta de usuário. Guardamos no navegador (`storage.sync` e `storage.local`) os ativos salvos, os limites e o histórico curto de preços. Ao consultar preços, o navegador contata AwesomeAPI, Binance e Hyperliquid, que veem o IP do usuário e os ativos pedidos. Nada é enviado a nós.
 - As caixas de "uso de dados" do painel precisam bater com esse texto.
 
@@ -50,7 +50,7 @@ Fontes: políticas e páginas do painel em developer.chrome.com/docs/webstore (l
 
 ## Atualização (2026-11-25, tarde)
 Feito: ícone 128 com folga de 16 px; aba Config (alertas, como funciona, fontes, avisos e política de privacidade); botão de teste removido; 6 capturas 1280x800 em `store/screenshots/`; textos da loja em `docs/loja-textos.md`; política em `docs/politica-de-privacidade.md`.
-Falta: hospedar a política numa URL pública (fora do politidata), tile 440x280 opcional, versão 1.0.0, reler termos das fontes, logo do HYPE, e conferir tudo no Chrome com a extensão recarregada.
+Falta: hospedar a política numa URL pública, tile 440x280 opcional, versão 1.0.0, reler termos das fontes, logo do HYPE, e conferir tudo no Chrome com a extensão recarregada.
 
 ## Fechamento (2026-11-25, noite)
 - Versão 1.0.0 no manifest e no package.json.
