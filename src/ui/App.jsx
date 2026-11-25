@@ -103,6 +103,21 @@ function ListScreen({ tab, saved, toggle, onOpen, onAdd, showToast }) {
           <h1>{TITLES[tab]}</h1>
           <div className="sub">{subtitle}</div>
         </div>
+        {isHome && typeof chrome !== 'undefined' && chrome.runtime?.sendMessage && (
+          <motion.button
+            type="button"
+            className="btn-add"
+            whileTap={{ scale: 0.94 }}
+            onClick={() => {
+              chrome.runtime.sendMessage({ type: 'test-alert' }).then(
+                (r) => showToast(r?.ok && r.count ? 'Alertas de teste enviados.' : 'Não consegui enviar o teste.'),
+                () => showToast('Não consegui enviar o teste.')
+              );
+            }}
+          >
+            Testar alertas
+          </motion.button>
+        )}
         {isHome && (
           <motion.button type="button" className="btn-add" whileTap={{ scale: 0.94 }} onClick={onAdd}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7ab2ff" strokeWidth="2.6" strokeLinecap="round" aria-hidden="true">

@@ -85,3 +85,36 @@ chrome.notifications.onClicked.addListener(async (notificationId) => {
     /* o Chrome só abre o painel após um gesto do usuário; o ativo fica guardado para a próxima abertura */
   }
 });
+
+// Alertas de teste (botão "Testar alertas" do painel): mesmos textos dos alertas reais, com os preços de agora.
+chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+  if (msg?.type !== 'test-alert') return false;
+  sendTestAlerts().then((n) => sendResponse({ ok: true, count: n }), (e) => sendResponse({ ok: false, error: String(e) }));
+  return true;
+});
+
+async function sendTestAlerts() {
+  const demo = [
+    ['BTC', -0.053],
+    ['USDBRL', 0.024],
+    ['SPX', -0.021]
+  ];
+  const { quotes } = await fetchQuotes(demo.map(([id]) => id));
+  let n = 0;
+  for (const [id, change] of demo) {
+    const q = quotes[id];
+    if (!q) continue;
+    const asset = BY_ID[id];
+    const { title, message } = alertText(asset, { change, from: q.price / (1 + change), to: q.price });
+    chrome.notifications.create(`alert-${id}-${Date.now()}`, {
+      type: 'basic',
+      iconUrl: 'icons/icon128.png',
+      title: `Teste · ${title}`,
+      message,
+      priority: 2
+    });
+    n++;
+    await new Promise((r) => setTimeout(r, 900));
+  }
+  return n;
+}
