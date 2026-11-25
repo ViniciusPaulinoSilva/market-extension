@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Promo</title>
+<style>
+  html, body { margin: 0; overflow: hidden; background: #0b0e13; font-family: "Segoe UI", Tahoma, sans-serif; color: #f2f5f9; }
+  .tile { width: 440px; height: 280px; display: flex; flex-direction: column; justify-content: center; padding: 0 34px; box-sizing: border-box;
+    background: radial-gradient(420px 280px at 15% 10%, #1a2a47 0%, #0b0e13 70%); }
+  .tile img { width: 64px; height: 64px; }
+  .tile h1 { margin: 14px 0 6px; font-size: 34px; line-height: 1.1; }
+  .tile p { margin: 0; font-size: 16px; color: #a3afc2; line-height: 1.4; }
+  .tile .chips { margin-top: 16px; display: flex; gap: 8px; }
+  .chip { padding: 5px 10px; border-radius: 999px; background: #141c2b; border: 1px solid #2b3a52; font-size: 12px; font-weight: 600; color: #b7c7e3; }
+  .marq { width: 1400px; height: 560px; display: flex; align-items: center; justify-content: center; gap: 110px; box-sizing: border-box;
+    background: radial-gradient(900px 560px at 15% 10%, #1a2a47 0%, #0b0e13 68%); }
+  .marq .copy { width: 640px; }
+  .marq img { width: 84px; height: 84px; }
+  .marq h1 { margin: 18px 0 14px; font-size: 64px; line-height: 1.05; }
+  .marq p { margin: 0; font-size: 26px; line-height: 1.45; color: #a3afc2; }
+  .marq .chips { margin-top: 26px; display: flex; gap: 10px; }
+  .marq .chip { font-size: 16px; padding: 8px 14px; }
+  .frame { width: 360px; height: 640px; margin-top: 160px; border-radius: 22px 22px 0 0; overflow: hidden; border: 1px solid #2b3a52; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  iframe { width: 360px; height: 640px; border: 0; display: block; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const kind = q.get('k') || 'tile';
+  const chips = '<span class="chip">Moedas</span><span class="chip">Cripto</span><span class="chip">Índices</span>';
+  if (kind === 'tile') {
+    root.innerHTML = `<div class="tile"><img src="/icons/icon128.png" alt=""><h1>Cotações</h1><p>Moedas, cripto e índices com alertas de variação rápida.</p><div class="chips">${chips}</div></div>`;
+    document.title = 'pronto';
+  } else {
+    localStorage.setItem('sync:saved', JSON.stringify(['USDBRL', 'BTC', 'ETH', 'SPX', 'EWZ']));
+    root.innerHTML = `<div class="marq"><div class="copy"><img src="/icons/icon128.png" alt=""><h1>Seus preços, num painel do Chrome</h1><p>Salve até 5 ativos e receba um aviso quando algum se mover rápido.</p><div class="chips">${chips}</div></div><div class="frame"><iframe id="f" src="/sidepanel/index.html"></iframe></div></div>`;
+    setTimeout(() => (document.title = 'pronto'), 6000);
+  }
+</script>
+</body>
+</html>

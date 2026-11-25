@@ -1,6 +1,8 @@
 // Textos que o usuário lê na aba Config. Fonte única: docs/politica-de-privacidade.md é gerado daqui (npm run docs).
 export const APP_NAME = 'Cotações';
 export const UPDATED = '25 de novembro de 2026';
+// E-mail de contato do publicador (aparece na política só se estiver preenchido).
+export const CONTACT = '';
 
 export const SOURCES = [
   { name: 'AwesomeAPI', what: 'Moedas (dólar, euro, libra, iene e yuan)', host: 'economia.awesomeapi.com.br' },
@@ -19,7 +21,7 @@ export const DISCLAIMERS = [
   'Os valores dos índices (S&P 500, Nasdaq-100, Nikkei 225, KOSPI 200) e do ETF EWZ vêm de contratos negociados 24 horas e não são o valor oficial do índice. Eles indicam a direção e a força do movimento.',
   'Se uma fonte ficar sem atualizar, o ativo aparece como “Parado há …” e o preço pode estar desatualizado.',
   'As informações são apenas informativas. Não são recomendação de compra, venda ou investimento. Os preços podem ter atraso ou erro.',
-  'Os nomes e logotipos das criptomoedas pertencem aos seus respectivos donos e aparecem só para identificar cada moeda. Os ícones vêm do pacote cryptocurrency-icons (licença CC0).'
+  'Os nomes e logotipos das criptomoedas pertencem aos seus respectivos donos e aparecem só para identificar cada moeda. Os ícones vêm do pacote cryptocurrency-icons (licença CC0). HYPERLIQUID™ e HYPE™ são marcas da Hyper Foundation, citadas só para identificar a moeda e a fonte dos dados; o ícone do HYPE é um símbolo simples nosso, não o logotipo oficial.'
 ];
 
 export const PRIVACY = [
@@ -58,6 +60,10 @@ export const PRIVACY = [
     p: [
       'Você pode remover ativos a qualquer momento, desligar os alertas na aba Config ou remover a extensão para apagar tudo o que ela guardou.'
     ]
+  },
+  {
+    h: 'Contato',
+    p: [CONTACT ? `Dúvidas sobre esta política: ${CONTACT}.` : 'Dúvidas sobre esta política podem ser enviadas pela página da extensão na Chrome Web Store.']
   },
   {
     h: 'Mudanças nesta política',

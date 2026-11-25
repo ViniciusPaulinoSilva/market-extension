@@ -1,6 +1,6 @@
 {
   "name": "extensao-cotacoes",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,8 @@
     "smoke": "node tools/smoke.mjs",
     "icons": "node tools/make-icons.mjs",
     "docs": "node tools/gen-docs.mjs",
-    "shots": "node tools/shots/take.mjs"
+    "shots": "node tools/shots/take.mjs",
+    "promo": "node tools/shots/promo.mjs"
   },
   "dependencies": {
     "motion": "^14.14.0",

@@ -55,14 +55,14 @@ Não, a extensão não usa código remoto. Todo o código vai dentro do pacote.
 - Certificar as três declarações: não vendemos dados a terceiros; não usamos nem transferimos dados para fins alheios à finalidade única; não usamos nem transferimos dados para avaliar crédito ou empréstimo.
 
 ## Política de privacidade (campo de URL)
-O painel exige uma URL pública. O texto completo está em `docs/politica-de-privacidade.md` (gerado de `src/ui/legal.js`, o mesmo que a aba Config mostra). Publique esse texto numa página própria, fora do repositório politidata, por exemplo no GitHub Pages de um repositório só da extensão, e cole o endereço no campo.
+O painel exige uma URL pública. O texto completo está em `docs/politica-de-privacidade.md` (gerado de `src/ui/legal.js`, o mesmo que a aba Config mostra). A página pronta está em `site/index.html` (passo a passo em `site/LEIA-ME.md`). Recomendado: GitHub Pages de um repositório só da extensão, fora do politidata.
 
 ## Imagens
 - Capturas 1280x800: `store/screenshots/` (home, moedas, cripto, detail, indices, config). A loja aceita até 5; sugestão: home, cripto, detail, indices, config.
 - Ícone 128x128: `dist/icons/icon128.png` (96x96 de arte e 16 px de folga).
-- Opcionais, ainda não feitos: tile pequeno 440x280 e marquee 1400x560.
+- Tile pequeno 440x280 e marquee 1400x560: `store/promo/` (npm run promo, com npm run dev ligado).
 
 ## Antes de enviar
-- Subir `version` do manifest para 1.0.0.
-- Reler os termos de AwesomeAPI, Binance e Hyperliquid na data do envio.
+- Versão 1.0.0 já está no manifest.
+- Termos das fontes lidos em 2026-11-25 (ver docs/publicar-chrome-web-store.md); reler no dia do envio.
 - Conferir o contato público do publicador e o status de “trader” no painel.

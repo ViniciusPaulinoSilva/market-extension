@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Cotações: alertas de moedas, cripto e índices",
   "short_name": "Cotações",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Acompanhe até 5 moedas, cripto ou índices e receba um aviso quando algum se mover rápido.",
   "minimum_chrome_version": "116",
   "permissions": ["storage", "alarms", "notifications", "sidePanel"],

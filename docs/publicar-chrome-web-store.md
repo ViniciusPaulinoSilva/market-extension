@@ -51,3 +51,14 @@ Fontes: políticas e páginas do painel em developer.chrome.com/docs/webstore (l
 ## Atualização (2026-11-25, tarde)
 Feito: ícone 128 com folga de 16 px; aba Config (alertas, como funciona, fontes, avisos e política de privacidade); botão de teste removido; 6 capturas 1280x800 em `store/screenshots/`; textos da loja em `docs/loja-textos.md`; política em `docs/politica-de-privacidade.md`.
 Falta: hospedar a política numa URL pública (fora do politidata), tile 440x280 opcional, versão 1.0.0, reler termos das fontes, logo do HYPE, e conferir tudo no Chrome com a extensão recarregada.
+
+## Fechamento (2026-11-25, noite)
+- Versão 1.0.0 no manifest e no package.json.
+- Tile 440x280 e marquee 1400x560 em `store/promo/`.
+- **HYPE:** o Hyperliquid tem kit de marca oficial, mas HYPERLIQUID, HYPE e o logo "blob" são marcas da Hyper Foundation e o uso exige seguir as diretrizes de marca (selo TM em cada uso, sem uso genérico). Decisão: **não usar o logo**; fica o símbolo simples nosso, e a nota de marca consta nos avisos da aba Config.
+- **Termos lidos hoje:**
+  - AwesomeAPI: docs dizem que pedidos sem chave de API ficam em cache por 1 minuto (nosso intervalo é 1 por minuto, compatível) e que a chave dá 100 mil pedidos por mês. Não achei regra de atribuição nem proibição de uso gratuito. Não li termos de uso formais (a página principal só carrega por JavaScript).
+  - Binance: `data-api.binance.vision` é o endereço indicado para dados públicos de mercado. Uma FAQ antiga (2022) proíbe, sem consentimento por escrito, apps que cobram ou lucram (inclusive com anúncios) com dados da Binance e serviços de redistribuição de dados. A extensão é gratuita, sem anúncios e sem redistribuir (cada usuário consulta direto), então está fora desse caso, mas isso não é garantia jurídica.
+  - Hyperliquid: API pública documentada; as regras de marca acima valem para nome e logo, não para os dados.
+- **Contato:** `CONTACT` em `src/ui/legal.js` está vazio de propósito; preencher com o e-mail do publicador antes de publicar a política.
+- **Política:** página pronta em `site/index.html`; hospedar no GitHub Pages (ver `site/LEIA-ME.md`).

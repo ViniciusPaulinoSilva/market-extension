@@ -34,6 +34,10 @@ Acesso aos três endereços de preço listados acima, e a nenhum outro site. A e
 
 Você pode remover ativos a qualquer momento, desligar os alertas na aba Config ou remover a extensão para apagar tudo o que ela guardou.
 
+## Contato
+
+Dúvidas sobre esta política podem ser enviadas pela página da extensão na Chrome Web Store.
+
 ## Mudanças nesta política
 
 Se algo mudar, esta tela e a descrição da extensão na Chrome Web Store serão atualizadas.
@@ -50,4 +54,4 @@ Se algo mudar, esta tela e a descrição da extensão na Chrome Web Store serão
 - Os valores dos índices (S&P 500, Nasdaq-100, Nikkei 225, KOSPI 200) e do ETF EWZ vêm de contratos negociados 24 horas e não são o valor oficial do índice. Eles indicam a direção e a força do movimento.
 - Se uma fonte ficar sem atualizar, o ativo aparece como “Parado há …” e o preço pode estar desatualizado.
 - As informações são apenas informativas. Não são recomendação de compra, venda ou investimento. Os preços podem ter atraso ou erro.
-- Os nomes e logotipos das criptomoedas pertencem aos seus respectivos donos e aparecem só para identificar cada moeda. Os ícones vêm do pacote cryptocurrency-icons (licença CC0).
+- Os nomes e logotipos das criptomoedas pertencem aos seus respectivos donos e aparecem só para identificar cada moeda. Os ícones vêm do pacote cryptocurrency-icons (licença CC0). HYPERLIQUID™ e HYPE™ são marcas da Hyper Foundation, citadas só para identificar a moeda e a fonte dos dados; o ícone do HYPE é um símbolo simples nosso, não o logotipo oficial.
