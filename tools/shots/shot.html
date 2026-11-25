@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Captura</title>
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; background: #0b0e13; font-family: "Segoe UI", Tahoma, sans-serif; color: #f2f5f9; }
+  .stage { width: 1280px; height: 800px; display: flex; align-items: center; justify-content: center; gap: 72px;
+    background: radial-gradient(900px 600px at 18% 20%, #16223a 0%, #0b0e13 62%); }
+  .copy { width: 520px; }
+  .copy .kicker { font-size: 15px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #34d399; }
+  .copy h1 { margin: 14px 0 16px; font-size: 52px; line-height: 1.08; font-weight: 700; }
+  .copy p { margin: 0; font-size: 22px; line-height: 1.5; color: #a3afc2; }
+  .frame { width: 400px; height: 700px; border-radius: 22px; overflow: hidden; border: 1px solid #2b3a52; box-shadow: 0 30px 80px rgba(0,0,0,.55); background: #0b0e13; }
+  iframe { width: 400px; height: 700px; border: 0; display: block; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="copy"><div class="kicker" id="k"></div><h1 id="h"></h1><p id="p"></p></div>
+  <div class="frame"><iframe id="f"></iframe></div>
+</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const S = {
+    home:    { k: 'Seus ativos', h: 'Tudo o que você acompanha, num só painel', p: 'Salve até 5 moedas, criptomoedas ou índices e veja o preço e a variação em 24 horas.' },
+    moedas:  { k: 'Moedas', h: 'Dólar, euro, libra, iene e yuan', p: 'Cotações em reais e pares globais, com aviso quando a fonte para de atualizar.' },
+    cripto:  { k: 'Cripto', h: '10 criptomoedas, preço sempre atualizado', p: 'Bitcoin, Ethereum, BNB, Solana e mais, sempre em dólar e atualizadas a cada minuto.' },
+    detail:  { k: 'Detalhes', h: 'Gráfico com variação de 24h a 30 dias', p: 'Toque no gráfico para ver o preço em cada momento, com máxima, mínima e abertura.' },
+    indices: { k: 'Índices', h: 'Acompanhe o movimento dos mercados', p: 'Contratos de 24 horas que indicam a direção do S&P 500, Nasdaq-100, Nikkei 225 e KOSPI 200.' },
+    config:  { k: 'Alertas', h: 'Avise-me quando mexer rápido', p: 'Escolha a variação mínima, a janela de análise e o intervalo entre avisos. Tudo fica no seu navegador.' }
+  };
+  const s = q.get('s') || 'home';
+  k.textContent = S[s].k; h.textContent = S[s].h; p.textContent = S[s].p;
+
+  localStorage.setItem('sync:saved', JSON.stringify(['USDBRL', 'BTC', 'ETH', 'SPX', 'EWZ']));
+  localStorage.removeItem('sync:config');
+  f.src = '/sidepanel/index.html';
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  f.addEventListener('load', async () => {
+    const d = f.contentDocument;
+    await wait(1500);
+    const tabs = { moedas: 1, cripto: 2, indices: 3, config: 4 };
+    if (tabs[s] != null) d.querySelectorAll('.nav-btn')[tabs[s]].click();
+    if (s === 'detail') {
+      await wait(1500);
+      [...d.querySelectorAll('.row-main')].find((b) => b.textContent.includes('Bitcoin')).click();
+    }
+    await wait(3500);
+    document.title = 'pronto';
+  });
+</script>
+</body>
+</html>

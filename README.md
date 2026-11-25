@@ -46,7 +46,7 @@ npm run dev   # abrir http://localhost:5173/sidepanel/index.html
 - Aviso "Parado há X" já feito (moedas 30 min, cripto 5 min, índices 15 min).
 - EWZ (Brasil, ETF em dólar) entrou como substituto ao vivo do Ibovespa, que não tem fonte grátis ao vivo.
 - Os índices são contratos 24h, não o valor oficial. A interface rotula como "Contrato 24h".
-- Tela de configuração (limites, janela, ligar e desligar alertas): hoje os valores padrão ficam em `src/catalog.js`.
+- Tela de configuração: feita (aba Config).
 
 ## Documentos
 
@@ -56,3 +56,5 @@ npm run dev   # abrir http://localhost:5173/sidepanel/index.html
 ## Créditos
 - Ícones de cripto: cryptocurrency-icons (CC0), https://github.com/spothq/cryptocurrency-icons. HYPE é um ícone simples nosso.
 - Checklist de publicação: `docs/publicar-chrome-web-store.md`.
+
+- Textos da loja: `docs/loja-textos.md`. Política de privacidade: `docs/politica-de-privacidade.md` (`npm run docs`). Capturas: `npm run shots` (com `npm run dev` ligado).

@@ -35,15 +35,18 @@ function distSeg(px, py, ax, ay, bx, by) {
 }
 function draw(size) {
   const px = Buffer.alloc(size * size * 4);
-  const r = size * 0.22;
-  const pts = [[0.16, 0.7], [0.38, 0.46], [0.54, 0.62], [0.84, 0.28]].map(([x, y]) => [x * size, y * size]);
-  const w = Math.max(1.6, size * 0.09);
+  // O ícone de 128 px tem 96 px de arte e 16 px transparentes por lado (regra da Chrome Web Store).
+  const pad = size === 128 ? 16 : 0;
+  const box = size - 2 * pad;
+  const r = box * 0.22;
+  const pts = [[0.16, 0.7], [0.38, 0.46], [0.54, 0.62], [0.84, 0.28]].map(([x, y]) => [pad + x * box, pad + y * box]);
+  const w = Math.max(1.6, box * 0.09);
   const SS = 4;
   for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
     let a = 0, g = 0, bg = 0;
     for (let sy = 0; sy < SS; sy++) for (let sx = 0; sx < SS; sx++) {
       const fx = x + (sx + 0.5) / SS, fy = y + (sy + 0.5) / SS;
-      const cx = Math.min(Math.max(fx, r), size - r), cy = Math.min(Math.max(fy, r), size - r);
+      const cx = Math.min(Math.max(fx, pad + r), size - pad - r), cy = Math.min(Math.max(fy, pad + r), size - pad - r);
       if (Math.hypot(fx - cx, fy - cy) <= r) {
         a++;
         let d = Infinity;

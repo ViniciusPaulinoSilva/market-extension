@@ -8,7 +8,9 @@
     "build": "vite build",
     "test": "node --test test/*.test.mjs",
     "smoke": "node tools/smoke.mjs",
-    "icons": "node tools/make-icons.mjs"
+    "icons": "node tools/make-icons.mjs",
+    "docs": "node tools/gen-docs.mjs",
+    "shots": "node tools/shots/take.mjs"
   },
   "dependencies": {
     "motion": "^14.14.0",

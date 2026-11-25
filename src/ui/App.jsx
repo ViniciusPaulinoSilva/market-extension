@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'motion/react';
 import AssetRow from './AssetRow.jsx';
 import Detail from './Detail.jsx';
+import Settings from './Settings.jsx';
 import { useSaved, useQuotes } from './hooks.js';
 import { ASSETS, BY_ID, MAX_SAVED, assetsOf } from '../catalog.js';
 
@@ -36,10 +37,20 @@ const TABS = [
         <path d="M15 6h6v6" />
       </>
     )
+  },
+  {
+    key: 'config',
+    label: 'Config',
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="3" />
+        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+      </>
+    )
   }
 ];
 
-const TITLES = { home: 'Meus ativos', moedas: 'Moedas', cripto: 'Cripto', indices: 'Índices' };
+const TITLES = { config: 'Config', home: 'Meus ativos', moedas: 'Moedas', cripto: 'Cripto', indices: 'Índices' };
 const PLACEHOLDERS = { moedas: 'Buscar moeda ou par', cripto: 'Buscar cripto', indices: 'Buscar índice' };
 
 function useToast() {
@@ -103,26 +114,6 @@ function ListScreen({ tab, saved, toggle, onOpen, onAdd, showToast }) {
           <h1>{TITLES[tab]}</h1>
           <div className="sub">{subtitle}</div>
         </div>
-        {isHome && typeof chrome !== 'undefined' && chrome.runtime?.sendMessage && (
-          <motion.button
-            type="button"
-            className="btn-add"
-            whileTap={{ scale: 0.94 }}
-            onClick={() => {
-              chrome.runtime.sendMessage({ type: 'test-alert' }).then(
-                (r) =>
-                  showToast(
-                    r?.ok
-                      ? `Alertas de teste enviados (${r.count}). Permissão: ${r.level}.`
-                      : `Falhou: ${(r?.errors || []).join('; ') || 'sem resposta'} (permissão: ${r?.level ?? '?'})`
-                  ),
-                (e) => showToast(`Falhou ao falar com o fundo: ${e?.message || e}`)
-              );
-            }}
-          >
-            Testar alertas
-          </motion.button>
-        )}
         {isHome && (
           <motion.button type="button" className="btn-add" whileTap={{ scale: 0.94 }} onClick={onAdd}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7ab2ff" strokeWidth="2.6" strokeLinecap="round" aria-hidden="true">
@@ -211,6 +202,8 @@ export default function App() {
             {ready &&
               (detail ? (
                 <DetailScreen id={detail} saved={saved} toggle={toggle} onBack={() => setDetail(null)} showToast={showToast} />
+              ) : tab === 'config' ? (
+                <Settings />
               ) : (
                 <ListScreen tab={tab} saved={saved} toggle={toggle} onOpen={setDetail} onAdd={() => goTab('moedas')} showToast={showToast} />
               ))}
