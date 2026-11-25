@@ -32,7 +32,7 @@ function fx(id, a, b, name, alertName, o = {}) {
   };
 }
 
-function crypto(id, sym, name, flagId) {
+function crypto(id, sym, name, flagId, dec = 2) {
   return {
     id,
     cat: 'cripto',
@@ -44,7 +44,7 @@ function crypto(id, sym, name, flagId) {
     kind: 'crypto',
     a: flagId,
     pre: 'US$ ',
-    dec: 2,
+    dec,
     unit: '',
     src: 'Binance',
     market: 'Aberto 24 horas'
@@ -88,6 +88,12 @@ export const ASSETS = [
   crypto('ETH', 'ETHUSDT', 'Ethereum', 'eth'),
   crypto('BNB', 'BNBUSDT', 'BNB', 'bnb'),
   crypto('SOL', 'SOLUSDT', 'Solana', 'sol'),
+  crypto('XRP', 'XRPUSDT', 'XRP', 'xrp'),
+  crypto('TRX', 'TRXUSDT', 'TRON', 'trx', 4),
+  crypto('HYPE', 'HYPEUSDT', 'Hyperliquid', 'hype'),
+  crypto('ZEC', 'ZECUSDT', 'Zcash', 'zec'),
+  crypto('DOGE', 'DOGEUSDT', 'Dogecoin', 'doge', 4),
+  crypto('LINK', 'LINKUSDT', 'Chainlink', 'link'),
 
   index('SPX', 'xyz:SP500', 'S&P 500', 'S&P 500', 'us', 'SPX', '#1D4ED8', 'Contrato do S&P 500'),
   index('NDX', 'xyz:XYZ100', 'Nasdaq-100', 'Nasdaq-100', 'us', 'NDX', '#0E7490', 'Contrato do Nasdaq-100'),
