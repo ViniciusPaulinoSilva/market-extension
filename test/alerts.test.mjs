@@ -26,15 +26,15 @@ test('alerta de alta de 2,75% dentro de 5 min', () => {
   const m = evaluate({ samples: s, lastAlert: 0 }, cfg, 180);
   assert.ok(m && m.change > 0.0288 && m.change < 0.0289);
   const t = alertText(BY_ID.USDBRL, m);
-  assert.equal(t.title, 'Dólar subiu 2,88%');
-  assert.match(t.message, /Dólar acabou de subir 2,88% nos últimos minutos\. USD\/BRL: R\$ 6,0700\./);
+  assert.equal(t.title, 'Dollar rose 2.88%');
+  assert.match(t.message, /Dollar just rose 2\.88% in the last few minutes\. USD\/BRL: R\$ 6\.0700\./);
 });
 
 test('alerta de queda', () => {
   const s = build([[0, 100], [60, 99], [120, 97.5]]);
   const m = evaluate({ samples: s, lastAlert: 0 }, cfg, 120);
   assert.ok(m.change < -0.024);
-  assert.match(alertText(BY_ID.BTC, m).title, /^Bitcoin caiu/);
+  assert.match(alertText(BY_ID.BTC, m).title, /^Bitcoin fell/);
 });
 
 test('movimento abaixo do limite não alerta', () => {

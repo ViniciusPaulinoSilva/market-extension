@@ -14,7 +14,7 @@ async function getJson(url, init, timeoutMs = 10000) {
   const timer = setTimeout(() => ctl.abort(), timeoutMs);
   try {
     const res = await fetch(url, { ...init, signal: ctl.signal });
-    if (!res.ok) throw new Error(`HTTP ${res.status} em ${new URL(url).host}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} at ${new URL(url).host}`);
     return await res.json();
   } finally {
     clearTimeout(timer);

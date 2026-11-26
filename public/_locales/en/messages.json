@@ -1,0 +1,6 @@
+{
+  "extName": { "message": "Market Quotes: Currency, Crypto & Index Alerts" },
+  "extShortName": { "message": "Market Quotes" },
+  "extDescription": { "message": "Track up to 5 currencies, cryptos or indices and get an alert when one moves fast." },
+  "actionTitle": { "message": "Market Quotes" }
+}

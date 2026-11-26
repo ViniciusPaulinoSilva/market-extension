@@ -1,5 +1,7 @@
+import { L, LOCALE } from './i18n.js';
+
 export function fmt(value, dec) {
-  return Number(value).toLocaleString('pt-BR', {
+  return Number(value).toLocaleString(LOCALE, {
     minimumFractionDigits: dec,
     maximumFractionDigits: dec
   });
@@ -10,14 +12,14 @@ export function money(asset, value) {
   return asset.pre + fmt(value, asset.dec);
 }
 
-// fração (0.0275) -> "+2,75%"
+// fração (0.0275) -> "+2.75%"
 export function pctText(fraction) {
   if (fraction == null || !Number.isFinite(fraction)) return '—';
   const sign = fraction >= 0 ? '+' : '−';
   return sign + fmt(Math.abs(fraction) * 100, 2) + '%';
 }
 
-// fração -> "2,75%" sem sinal
+// fração -> "2.75%" sem sinal
 export function pctAbs(fraction) {
   return fmt(Math.abs(fraction) * 100, 2) + '%';
 }
@@ -39,7 +41,10 @@ export function staleInfo(asset, quote, nowSec = Date.now() / 1000) {
   const t = ageText(age);
   return {
     age,
-    short: `Parado há ${t}`,
-    text: `Este valor não é atualizado pela fonte há ${t}. Pode ser mercado fechado ou falha da fonte, então o preço mostrado pode estar desatualizado.`
+    short: L(`Stale for ${t}`, `Parado há ${t}`),
+    text: L(
+      `The source has not updated this value for ${t}. The market may be closed or the source may be down, so the price shown may be out of date.`,
+      `Este valor não é atualizado pela fonte há ${t}. Pode ser mercado fechado ou falha da fonte, então o preço mostrado pode estar desatualizado.`
+    )
   };
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Promo</title>
@@ -29,14 +29,19 @@
 <script>
   const q = new URLSearchParams(location.search);
   const kind = q.get('k') || 'tile';
-  const chips = '<span class="chip">Moedas</span><span class="chip">Cripto</span><span class="chip">Índices</span>';
+  const lang = q.get('l') === 'pt' ? 'pt' : 'en';
+  localStorage.setItem('lang', lang);
+  const X = lang === 'pt'
+    ? { chips: ['Moedas', 'Cripto', 'Índices'], name: 'Cotações', tile: 'Moedas, cripto e índices com alertas de variação rápida.', h: 'Seus preços, num painel do Chrome', p: 'Salve até 5 ativos e receba um aviso quando algum se mover rápido.' }
+    : { chips: ['Currencies', 'Crypto', 'Indices'], name: 'Market Quotes', tile: 'Currencies, crypto and indices with fast-move alerts.', h: 'Your prices, in a Chrome side panel', p: 'Save up to 5 assets and get an alert when one moves fast.' };
+  const chips = X.chips.map((c) => `<span class="chip">${c}</span>`).join('');
   if (kind === 'tile') {
-    root.innerHTML = `<div class="tile"><img src="/icons/icon128.png" alt=""><h1>Cotações</h1><p>Moedas, cripto e índices com alertas de variação rápida.</p><div class="chips">${chips}</div></div>`;
+    root.innerHTML = `<div class="tile"><img src="/icons/icon128.png" alt=""><h1>${X.name}</h1><p>${X.tile}</p><div class="chips">${chips}</div></div>`;
     document.title = 'pronto';
   } else {
     localStorage.setItem('sync:saved', JSON.stringify(['USDBRL', 'BTC', 'ETH', 'SPX', 'EWZ']));
-    root.innerHTML = `<div class="marq"><div class="copy"><img src="/icons/icon128.png" alt=""><h1>Seus preços, num painel do Chrome</h1><p>Salve até 5 ativos e receba um aviso quando algum se mover rápido.</p><div class="chips">${chips}</div></div><div class="frame"><iframe id="f" src="/sidepanel/index.html"></iframe></div></div>`;
-    setTimeout(() => (document.title = 'pronto'), 6000);
+    root.innerHTML = `<div class="marq"><div class="copy"><img src="/icons/icon128.png" alt=""><h1>${X.h}</h1><p>${X.p}</p><div class="chips">${chips}</div></div><div class="frame"><iframe id="f" src="/sidepanel/index.html"></iframe></div></div>`;
+    setTimeout(() => (document.title = "pronto"), 10000);
   }
 </script>
 </body>

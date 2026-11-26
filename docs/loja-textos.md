@@ -1,4 +1,6 @@
-# Textos para a Chrome Web Store (pt-BR)
+# Textos para a Chrome Web Store: segundo idioma, Português (Brasil)
+
+Use estes textos na listagem em **Português (Brasil)** (painel: Store listing > Language > adicionar idioma). A listagem principal é em inglês: ver `docs/store-listing-en.md`. Imagens desta listagem: `store/screenshots/pt/` e `store/promo/pt/`. A política é a mesma URL bilíngue.
 
 Tudo abaixo é para copiar e colar no painel do desenvolvedor. Os campos seguem as abas Store listing e Privacy practices.
 
@@ -33,7 +35,7 @@ Importante:
 Produtividade (alternativa: Notícias e clima). Recomendo Produtividade.
 
 ## Idioma
-Português (Brasil)
+Português (Brasil) (segundo idioma da listagem)
 
 ## Finalidade única (Privacy practices)
 Mostrar as cotações de até 5 moedas, criptomoedas ou índices escolhidos pelo usuário e avisá-lo quando um deles se mover rápido.
@@ -58,7 +60,7 @@ Não, a extensão não usa código remoto. Todo o código vai dentro do pacote.
 O painel exige uma URL pública. O texto completo está em `docs/politica-de-privacidade.md` (gerado de `src/ui/legal.js`, o mesmo que a aba Config mostra). A página pronta está em `docs/index.html` (passo a passo em `docs/hospedagem-pages.md`). Recomendado: GitHub Pages de um repositório só da extensão.
 
 ## Imagens
-- Capturas 1280x800: `store/screenshots/` (home, moedas, cripto, detail, indices, config). A loja aceita até 5; sugestão: home, cripto, detail, indices, config.
+- Capturas 1280x800: `store/screenshots/pt/` (home, moedas, cripto, detail, indices, config). A loja aceita até 5; sugestão: home, cripto, detail, indices, config.
 - Ícone 128x128: `dist/icons/icon128.png` (96x96 de arte e 16 px de folga).
 - Tile pequeno 440x280 e marquee 1400x560: `store/promo/` (npm run promo, com npm run dev ligado).
 

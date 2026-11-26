@@ -1,5 +1,6 @@
 // Detecção de movimento rápido. Funções puras, sem acesso a rede nem ao navegador.
 import { pctAbs, money } from './format.js';
+import { L } from './i18n.js';
 
 const KEEP_SEC = 30 * 60; // histórico de amostras guardado por ativo
 const MAX_AGE_SEC = 15 * 60; // amostra mais velha que isso = fonte parada, não alerta
@@ -54,7 +55,10 @@ export function alertText(asset, move) {
   const up = move.change > 0;
   const pct = pctAbs(move.change);
   return {
-    title: `${asset.alertName} ${up ? 'subiu' : 'caiu'} ${pct}`,
-    message: `${asset.alertName} acabou de ${up ? 'subir' : 'cair'} ${pct} nos últimos minutos. ${asset.ticker}: ${money(asset, move.to)}.`
+    title: `${asset.alertName} ${up ? L('rose', 'subiu') : L('fell', 'caiu')} ${pct}`,
+    message: L(
+      `${asset.alertName} just ${up ? 'rose' : 'fell'} ${pct} in the last few minutes. ${asset.ticker}: ${money(asset, move.to)}.`,
+      `${asset.alertName} acabou de ${up ? 'subir' : 'cair'} ${pct} nos últimos minutos. ${asset.ticker}: ${money(asset, move.to)}.`
+    )
   };
 }

@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import Icon from './Icon.jsx';
 import { money, pctText, staleInfo } from '../format.js';
 import { usePrevious } from './hooks.js';
+import { L } from '../i18n.js';
 
 export function StarIcon({ on, size = 22 }) {
   return (
@@ -68,12 +69,12 @@ export default function AssetRow({ asset, quote, starred, onOpen, onToggle, inde
           <b>{asset.name}</b>
           <span>
             {asset.ticker}
-            {asset.proxy && <i className="tag">Contrato 24h</i>}
+            {asset.proxy && <i className="tag">{L('24h contract', 'Contrato 24h')}</i>}
             {stale && <i className="tag stale">{stale.short}</i>}
           </span>
         </span>
         <span className="row-val">
-          {quote ? <Price asset={asset} value={quote.price} /> : <b className="skel">carregando</b>}
+          {quote ? <Price asset={asset} value={quote.price} /> : <b className="skel">{L('loading', 'carregando')}</b>}
           <span className={`chg ${cls}`}>
             {cls !== 'flat' && <i className="tri" />}
             {quote ? pctText(quote.change24h) : ''}
@@ -84,7 +85,7 @@ export default function AssetRow({ asset, quote, starred, onOpen, onToggle, inde
         type="button"
         className="star"
         whileTap={{ scale: 0.8 }}
-        aria-label={starred ? `Remover ${asset.name} dos salvos` : `Salvar ${asset.name}`}
+        aria-label={starred ? L(`Remove ${asset.name} from saved`, `Remover ${asset.name} dos salvos`) : L(`Save ${asset.name}`, `Salvar ${asset.name}`)}
         aria-pressed={starred}
         onClick={() => onToggle(asset.id)}
       >

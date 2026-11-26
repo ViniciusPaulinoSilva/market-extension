@@ -6,11 +6,12 @@ import { StarIcon, Price } from './AssetRow.jsx';
 import { useHistory, useConfig } from './hooks.js';
 import { CATEGORIES, thresholdFor } from '../catalog.js';
 import { money, pctText, fmt, staleInfo } from '../format.js';
+import { L } from '../i18n.js';
 
 const RANGES = [
-  ['24h', '24h', 'nas últimas 24 horas'],
-  ['7d', '7 dias', 'nos últimos 7 dias'],
-  ['30d', '30 dias', 'nos últimos 30 dias']
+  ['24h', '24h', L('in the last 24 hours', 'nas últimas 24 horas')],
+  ['7d', L('7 days', '7 dias'), L('in the last 7 days', 'nos últimos 7 dias')],
+  ['30d', L('30 days', '30 dias'), L('in the last 30 days', 'nos últimos 30 dias')]
 ];
 
 const item = (i) => ({
@@ -49,23 +50,23 @@ export default function Detail({ asset, quote, starred, onBack, onToggle }) {
   const thresholdPct = thresholdFor(asset, config) * 100;
 
   const stats = [
-    ['Máxima do dia', money(asset, hi), ''],
-    ['Mínima do dia', money(asset, lo), ''],
-    ['Abertura', money(asset, open), ''],
-    ['Fechamento anterior', money(asset, quote?.prev), ''],
-    ['Máxima no período', perPs.length ? money(asset, Math.max(...perPs)) : '—', 'up'],
-    ['Mínima no período', perPs.length ? money(asset, Math.min(...perPs)) : '—', 'down']
+    [L('Day high', 'Máxima do dia'), money(asset, hi), ''],
+    [L('Day low', 'Mínima do dia'), money(asset, lo), ''],
+    [L('Open', 'Abertura'), money(asset, open), ''],
+    [L('Previous close', 'Fechamento anterior'), money(asset, quote?.prev), ''],
+    [L('Period high', 'Máxima no período'), perPs.length ? money(asset, Math.max(...perPs)) : '—', 'up'],
+    [L('Period low', 'Mínima no período'), perPs.length ? money(asset, Math.min(...perPs)) : '—', 'down']
   ];
   const info = [
-    ['Fonte dos dados', asset.src],
-    ['Mercado', asset.market],
-    ['Alerta', `±${fmt(thresholdPct, 0)}% em ${config.windowMin} min`]
+    [L('Data source', 'Fonte dos dados'), asset.src],
+    [L('Market', 'Mercado'), asset.market],
+    [L('Alert', 'Alerta'), L(`±${fmt(thresholdPct, 0)}% in ${config.windowMin} min`, `±${fmt(thresholdPct, 0)}% em ${config.windowMin} min`)]
   ];
 
   return (
     <>
       <div className="dhead">
-        <motion.button type="button" className="iconbtn" aria-label="Voltar" onClick={onBack} whileTap={{ scale: 0.85 }}>
+        <motion.button type="button" className="iconbtn" aria-label={L('Back', 'Voltar')} onClick={onBack} whileTap={{ scale: 0.85 }}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f2f5f9" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M15 5 8 12l7 7" />
           </svg>
@@ -81,7 +82,7 @@ export default function Detail({ asset, quote, starred, onBack, onToggle }) {
           type="button"
           className="iconbtn"
           whileTap={{ scale: 0.8 }}
-          aria-label={starred ? `Remover ${asset.name} dos salvos` : `Salvar ${asset.name}`}
+          aria-label={starred ? L(`Remove ${asset.name} from saved`, `Remover ${asset.name} dos salvos`) : L(`Save ${asset.name}`, `Salvar ${asset.name}`)}
           aria-pressed={starred}
           onClick={() => onToggle(asset.id)}
         >
@@ -101,7 +102,7 @@ export default function Detail({ asset, quote, starred, onBack, onToggle }) {
           <span className="per">{periodLabel}</span>
         </motion.div>
 
-        <motion.div {...item(2)} className="pills" role="group" aria-label="Período do gráfico">
+        <motion.div {...item(2)} className="pills" role="group" aria-label={L('Chart period', 'Período do gráfico')}>
           {RANGES.map(([k, label]) => (
             <button key={k} type="button" className="pill" aria-pressed={range === k} onClick={() => setRange(k)}>
               {range === k && <motion.span layoutId="pill-bg" className="pill-bg" transition={{ type: 'spring', stiffness: 500, damping: 36 }} />}
@@ -118,10 +119,10 @@ export default function Detail({ asset, quote, starred, onBack, onToggle }) {
               range={range}
               formatPrice={(v) => money(asset, v)}
               drawKey={`${asset.id}-${range}-${series.length}`}
-              label={`Gráfico de ${asset.name} ${periodLabel}, ${pctText(frac)}`}
+              label={L(`${asset.name} chart ${periodLabel}, ${pctText(frac)}`, `Gráfico de ${asset.name} ${periodLabel}, ${pctText(frac)}`)}
             />
           ) : (
-            <div className="loading">{hist.loading ? 'Carregando gráfico…' : hist.error ? 'Não foi possível carregar o gráfico.' : 'Sem dados para este período.'}</div>
+            <div className="loading">{hist.loading ? L('Loading chart…', 'Carregando gráfico…') : hist.error ? L('Could not load the chart.', 'Não foi possível carregar o gráfico.') : L('No data for this period.', 'Sem dados para este período.')}</div>
           )}
         </motion.div>
 
@@ -151,7 +152,10 @@ export default function Detail({ asset, quote, starred, onBack, onToggle }) {
 
         {asset.proxy && (
           <motion.div {...item(9)} className="proxy">
-            Este valor vem de um contrato negociado 24 horas que acompanha o índice. Ele indica a variação, mas <strong>não é o valor oficial</strong> do índice.
+            {L(
+              <>This value comes from a contract traded 24 hours a day that tracks the index. It shows the move, but it is <strong>not the official value</strong> of the index.</>,
+              <>Este valor vem de um contrato negociado 24 horas que acompanha o índice. Ele indica a variação, mas <strong>não é o valor oficial</strong> do índice.</>
+            )}
           </motion.div>
         )}
       </div>

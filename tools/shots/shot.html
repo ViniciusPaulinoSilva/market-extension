@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Captura</title>
+<title>Screenshot</title>
 <style>
   html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; background: #0b0e13; font-family: "Segoe UI", Tahoma, sans-serif; color: #f2f5f9; }
   .stage { width: 1280px; height: 800px; display: flex; align-items: center; justify-content: center; gap: 72px;
@@ -22,14 +22,26 @@
 </div>
 <script>
   const q = new URLSearchParams(location.search);
-  const S = {
+  const EN = {
+    home:    { k: 'Your assets', h: 'Everything you follow, in one panel', p: 'Save up to 5 currencies, cryptos or indices and see the price and 24-hour change.' },
+    moedas:  { k: 'Currencies', h: 'Dollar, euro, pound, yen and yuan', p: 'Quotes against the real plus global pairs, with a notice when a source stops updating.' },
+    cripto:  { k: 'Crypto', h: '10 cryptocurrencies, always up to date', p: 'Bitcoin, Ethereum, BNB, Solana and more, always in US dollars and refreshed every minute.' },
+    detail:  { k: 'Details', h: 'Charts from 24 hours to 30 days', p: 'Hover over the chart to see the price at any moment, with high, low and open.' },
+    indices: { k: 'Indices', h: 'Follow the move of the markets', p: '24-hour contracts that show the direction of the S&P 500, Nasdaq-100, Nikkei 225 and KOSPI 200.' },
+    config:  { k: 'Alerts', h: 'Tell me when it moves fast', p: 'Choose the minimum move, the time window and the time between alerts. Everything stays in your browser.' }
+  };
+  const PT = {
     home:    { k: 'Seus ativos', h: 'Tudo o que você acompanha, num só painel', p: 'Salve até 5 moedas, criptomoedas ou índices e veja o preço e a variação em 24 horas.' },
     moedas:  { k: 'Moedas', h: 'Dólar, euro, libra, iene e yuan', p: 'Cotações em reais e pares globais, com aviso quando a fonte para de atualizar.' },
     cripto:  { k: 'Cripto', h: '10 criptomoedas, preço sempre atualizado', p: 'Bitcoin, Ethereum, BNB, Solana e mais, sempre em dólar e atualizadas a cada minuto.' },
-    detail:  { k: 'Detalhes', h: 'Gráfico com variação de 24h a 30 dias', p: 'Toque no gráfico para ver o preço em cada momento, com máxima, mínima e abertura.' },
+    detail:  { k: 'Detalhes', h: 'Gráfico com variação de 24h a 30 dias', p: 'Passe o mouse no gráfico para ver o preço em cada momento, com máxima, mínima e abertura.' },
     indices: { k: 'Índices', h: 'Acompanhe o movimento dos mercados', p: 'Contratos de 24 horas que indicam a direção do S&P 500, Nasdaq-100, Nikkei 225 e KOSPI 200.' },
     config:  { k: 'Alertas', h: 'Avise-me quando mexer rápido', p: 'Escolha a variação mínima, a janela de análise e o intervalo entre avisos. Tudo fica no seu navegador.' }
   };
+  const lang = q.get('l') === 'pt' ? 'pt' : 'en';
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  const S = lang === 'pt' ? PT : EN;
   const s = q.get('s') || 'home';
   k.textContent = S[s].k; h.textContent = S[s].h; p.textContent = S[s].p;
 

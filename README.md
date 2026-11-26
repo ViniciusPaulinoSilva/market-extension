@@ -1,4 +1,4 @@
-# Cotações: extensão do Chrome
+# Market Quotes: Chrome extension (English UI)
 
 Painel lateral (React, Vite e Motion) que acompanha até 5 moedas, cripto ou índices e avisa quando algum se move rápido.
 Pesquisa, fontes e decisões: `docs/plano-extensao-cotacoes.md`.

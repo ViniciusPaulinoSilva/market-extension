@@ -7,7 +7,8 @@ import path from 'node:path';
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9334;
 const OUT = new URL('../../store/promo/', import.meta.url);
-mkdirSync(OUT, { recursive: true });
+const LANGS = (process.env.LANGS || 'en,pt').split(',');
+for (const l of LANGS) mkdirSync(new URL(`${l}/`, OUT), { recursive: true });
 const JOBS = [
   { k: 'tile', w: 440, h: 280, file: 'tile-440x280.png' },
   { k: 'marquee', w: 1400, h: 560, file: 'marquee-1400x560.png' }
@@ -30,9 +31,9 @@ ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)
 const send = (method, params = {}) => new Promise((r) => { const id = ++n; pend.set(id, r); ws.send(JSON.stringify({ id, method, params })); });
 
 await send('Page.enable');
-for (const j of JOBS) {
+for (const l of LANGS) for (const j of JOBS) {
   await send('Emulation.setDeviceMetricsOverride', { width: j.w, height: j.h, deviceScaleFactor: 1, mobile: false });
-  await send('Page.navigate', { url: `http://localhost:5173/tools/shots/promo.html?k=${j.k}` });
+  await send('Page.navigate', { url: `http://localhost:5173/tools/shots/promo.html?k=${j.k}&l=${l}` });
   for (let i = 0; i < 40; i++) {
     await sleep(500);
     const r = await send('Runtime.evaluate', { expression: 'document.title', returnByValue: true });
@@ -40,8 +41,8 @@ for (const j of JOBS) {
   }
   await sleep(800);
   const shot = await send('Page.captureScreenshot', { format: 'png' });
-  writeFileSync(new URL(j.file, OUT), Buffer.from(shot.result.data, 'base64'));
-  console.log('ok', j.file);
+  writeFileSync(new URL(`${l}/${j.file}`, OUT), Buffer.from(shot.result.data, 'base64'));
+  console.log('ok', l, j.file);
 }
 ws.close();
 chrome.kill();

@@ -21,7 +21,7 @@ test('7 dias: uma marcação por dia', () => {
 test('24h: de 6 em 6 horas, rótulo em horas', () => {
   const t = makeTicks('24h', end - 86400, end);
   assert.ok(t.length >= 2 && t.length <= 4);
-  assert.match(t[0].label, /^\d\dh$/);
+  assert.match(t[0].label, /^\d\d:00$/);
   assert.ok(t.every((x) => x.t % 3600 === 0 || true));
 });
 

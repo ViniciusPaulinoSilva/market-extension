@@ -1,6 +1,6 @@
 # Política de privacidade: Cotações
 
-Atualizada em 25 de novembro de 2026.
+Atualizada em 26 de novembro de 2026.
 
 ## Resumo
 

@@ -1,0 +1,6 @@
+{
+  "extName": { "message": "Cotações: alertas de moedas, cripto e índices" },
+  "extShortName": { "message": "Cotações" },
+  "extDescription": { "message": "Acompanhe até 5 moedas, cripto ou índices e receba um aviso quando algum se mover rápido." },
+  "actionTitle": { "message": "Cotações" }
+}

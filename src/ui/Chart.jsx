@@ -2,6 +2,7 @@ import React, { useId, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { makeTicks, pointLabel, isDaily, nearestIndex } from '../ticks.js';
 import { pctText } from '../format.js';
+import { L } from '../i18n.js';
 
 const W = 340;
 const H = 170;
@@ -9,7 +10,7 @@ const H = 170;
 const GREEN = '#34d399';
 const RED = '#ff6b6b';
 
-const AGO = { '24h': 'Há 24h', '7d': 'Há 7 dias', '30d': 'Há 30 dias' };
+const AGO = { '24h': L('24h ago', 'Há 24h'), '7d': L('7 days ago', 'Há 7 dias'), '30d': L('30 days ago', 'Há 30 dias') };
 
 export function buildPaths(series) {
   const n = series.length;
@@ -127,7 +128,7 @@ export default function Chart({ series, up, range, label, drawKey, formatPrice }
             {t.label}
           </span>
         ))}
-        <span style={{ right: 0, left: 'auto', transform: 'none' }}>Agora</span>
+        <span style={{ right: 0, left: 'auto', transform: 'none' }}>{L('Now', 'Agora')}</span>
       </div>
     </div>
   );

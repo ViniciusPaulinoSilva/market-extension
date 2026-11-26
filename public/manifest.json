@@ -1,11 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "Cotações: alertas de moedas, cripto e índices",
-  "short_name": "Cotações",
+  "name": "__MSG_extName__",
+  "short_name": "__MSG_extShortName__",
   "version": "1.0.0",
-  "description": "Acompanhe até 5 moedas, cripto ou índices e receba um aviso quando algum se mover rápido.",
+  "description": "__MSG_extDescription__",
   "minimum_chrome_version": "116",
-  "permissions": ["storage", "alarms", "notifications", "sidePanel"],
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "sidePanel"
+  ],
   "host_permissions": [
     "https://economia.awesomeapi.com.br/*",
     "https://data-api.binance.vision/*",
@@ -16,7 +21,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "Cotações",
+    "default_title": "__MSG_actionTitle__",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
@@ -32,5 +37,6 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "default_locale": "en"
 }

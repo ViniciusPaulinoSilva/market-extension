@@ -7,9 +7,10 @@ import path from 'node:path';
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const PORT = 9333;
+const LANGS = (process.env.LANGS || 'en,pt').split(',');
 const OUT = new URL('../../store/screenshots/', import.meta.url);
 const SCREENS = ['home', 'moedas', 'cripto', 'detail', 'indices', 'config'];
-mkdirSync(OUT, { recursive: true });
+for (const l of LANGS) mkdirSync(new URL(`${l}/`, OUT), { recursive: true });
 
 const prof = path.join(os.tmpdir(), 'shotprof-cdp');
 rmSync(prof, { recursive: true, force: true });
@@ -38,8 +39,8 @@ const send = (method, params = {}) => new Promise((r) => { const id = ++n; pend.
 
 await send('Page.enable');
 await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false });
-for (const s of SCREENS) {
-  await send('Page.navigate', { url: `http://localhost:5173/tools/shots/shot.html?s=${s}` });
+for (const l of LANGS) for (const s of SCREENS) {
+  await send('Page.navigate', { url: `http://localhost:5173/tools/shots/shot.html?s=${s}&l=${l}` });
   for (let i = 0; i < 40; i++) {
     await sleep(500);
     const r = await send('Runtime.evaluate', { expression: 'document.title', returnByValue: true });
@@ -47,8 +48,8 @@ for (const s of SCREENS) {
   }
   await sleep(1500);
   const shot = await send('Page.captureScreenshot', { format: 'png' });
-  writeFileSync(new URL(`${s}.png`, OUT), Buffer.from(shot.result.data, 'base64'));
-  console.log('ok', s);
+  writeFileSync(new URL(`${l}/${s}.png`, OUT), Buffer.from(shot.result.data, 'base64'));
+  console.log('ok', l, s);
 }
 ws.close();
 chrome.kill();

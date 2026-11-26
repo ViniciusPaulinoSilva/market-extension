@@ -1,5 +1,7 @@
 // Marcações do eixo de tempo do gráfico. Funções puras (sem React), com hora local.
 
+import { LOCALE } from './i18n.js';
+
 const DAY = 86400;
 
 /** Escolhe os pontos do eixo: 24h = a cada 6 h, 7 dias = todo dia, 30 dias = de 5 em 5 dias. */
@@ -26,16 +28,18 @@ export function makeTicks(range, tMin, tMax) {
 
 export function tickLabel(range, t) {
   const d = new Date(t * 1000);
-  if (range === '24h') return `${String(d.getHours()).padStart(2, '0')}h`;
-  return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`;
+  if (range === '24h') return LOCALE === 'pt-BR' ? `${String(d.getHours()).padStart(2, '0')}h` : `${String(d.getHours()).padStart(2, '0')}:00`;
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  return LOCALE === 'pt-BR' ? `${dd}/${mm}` : `${mm}/${dd}`;
 }
 
 /** Texto da data do ponto sob o mouse. Pontos diários mostram só o dia. */
 export function pointLabel(t, daily) {
   const d = new Date(t * 1000);
-  const day = d.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: '2-digit' });
+  const day = d.toLocaleDateString(LOCALE, { weekday: 'short', day: '2-digit', month: '2-digit' });
   if (daily) return day;
-  return `${day} ${d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+  return `${day} ${d.toLocaleTimeString(LOCALE, { hour: '2-digit', minute: '2-digit' })}`;
 }
 
 /** Os pontos são diários quando o espaço típico entre eles passa de 20 h. */

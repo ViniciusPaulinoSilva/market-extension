@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "node --test test/*.test.mjs",
+    "test": "node --import ./test/setup-en.mjs --test test/*.test.mjs",
     "smoke": "node tools/smoke.mjs",
     "icons": "node tools/make-icons.mjs",
     "docs": "node tools/gen-docs.mjs",
